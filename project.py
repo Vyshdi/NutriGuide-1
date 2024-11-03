@@ -2,7 +2,7 @@ import google.generativeai as genai
 import streamlit as st
 import os
 
-api_key = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw" 
+api_key = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"  # Replace with your actual API key
 genai.configure(api_key=api_key)
 
 if not os.path.exists("temp"):
@@ -18,18 +18,16 @@ if image_file:
     with open(temp_image_path, "wb") as f:
         f.write(image_file.getbuffer())
 
-    st.image(image_file, caption="Uploaded Image", use_column_width=True
-             
+    st.image(image_file, caption="Uploaded Image", use_column_width=True)
     if st.button("Estimate Calories"):
         try:
             myfile = genai.upload_file(temp_image_path)
-
             model = genai.GenerativeModel("gemini-1.5-flash") 
             result = model.generate_content(
                 [
                     myfile,
                     "\n\n",
-                    """You are an expert nutritionist. provide the Breif explanation of the food and You do not need to provide exact calorie counts; you can give expected calorie ranges. Analyze the food items in this image and calculate the expected total calories.
+                    """You are an expert nutritionist.tell the food name, provide the Breif explanation of the food and You do not need to provide exact calorie counts; you can give expected calorie ranges. Analyze the food items in this image and calculate the expected total calories.
                     Also, provide details of every food item with its expected calorie intake range in the following format:
 
                     1. Item 1 - Expected calorie range (e.g., 100-150 calories)
@@ -46,6 +44,5 @@ if image_file:
         except Exception as e:
             st.error(f"An error occurred: {e}")
 
-    # Clean up the temporary file after processing
     if os.path.exists(temp_image_path):
         os.remove(temp_image_path)
