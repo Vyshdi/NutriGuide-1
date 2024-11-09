@@ -26,8 +26,8 @@ else:
 API_KEY_GROQ = "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"
 API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
 
-client = Groq(api_key=API_KEY_GROQ)
-genai.configure(api_key=API_KEY_GENAI)
+client = Groq(api_key="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")
+genai.configure(api_key="AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw")
 
 if not os.path.exists("temp"):
     os.makedirs("temp")
