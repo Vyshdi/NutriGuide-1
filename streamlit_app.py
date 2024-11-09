@@ -2,34 +2,17 @@ import streamlit as st
 import datetime
 import os
 import matplotlib.pyplot as plt
+from groq import Groq
+import google.generativeai as genai
 
-# Import AI libraries with error handling
-try:
-    from groq import Groq
-    groq_available = True
-except ImportError:
-    groq_available = False
-    st.warning("Groq library is not available. Some features may be limited.")
+API_KEY_GROQ = "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"
+API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
 
-try:
-    import google.generativeai as genai
-    genai_available = True
-except ImportError:
-    genai_available = False
-    st.warning("Google Generative AI library is not available. Some features may be limited.")
+client = Groq(api_key=API_KEY_GROQ)
+genai.configure(api_key=API_KEY_GENAI)
 
-# Configure API keys only if respective libraries are available
-if groq_available:
-    client = Groq(api_key="gsk_I1BNr83qfIcdJXTyWPMDWGdyb3FYZWkOawdejBDwLwPzMlynGy")
-
-if genai_available:  # Make sure genai is available before configuring it
-    genai.configure(api_key="AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw")
-
-# Check and create a directory for temporary files
 if not os.path.exists("temp"):
     os.makedirs("temp")
-
-# Rest of your application logic here
 
 st.markdown("""
     <style>
@@ -107,6 +90,7 @@ if app_mode == "Personalized Meal Plan":
                               "make sure first the dish must be mentioned followed by ingeredints and its cost then approximation of entire dish\n"
                               "when its intermittent fasting make sure to take time which user provides\n"
                               "provide deatils of the paramter choosen by the user before giving the diet \n"
+                              "If i ask in days give me in the complete day. i want youto give me all the data which asked "
 
                 }
             ]
@@ -381,3 +365,4 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
         ax.set_title("Weekly Calorie Intake")
         ax.legend()
         st.pyplot(fig)
+
