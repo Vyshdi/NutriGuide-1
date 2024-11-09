@@ -1,3 +1,4 @@
 streamlit
 matplotlib
 groq
+google-generative-ai
