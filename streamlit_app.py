@@ -23,7 +23,7 @@ except ImportError:
 st.title("NutriGuide")
 st.write("This app analyzes nutritional information.")
 
-# Configure API keys if libraries are available
+# Configure API keys only if respective libraries are available
 if groq_available:
     client = Groq(api_key="gsk_I1BNr83qfIcdJXTyWPMDWGdyb3FYZWkOawdejBDwLwPzMlynGy")
 
@@ -33,6 +33,8 @@ if genai_available:
 # Check and create a directory for temporary files
 if not os.path.exists("temp"):
     os.makedirs("temp")
+
+# Rest of your application logic here
 
 st.markdown("""
     <style>
