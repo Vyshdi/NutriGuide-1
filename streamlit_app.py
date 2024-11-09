@@ -3,43 +3,39 @@ import datetime
 import os
 import matplotlib.pyplot as plt
 
-import streamlit as st
-import datetime
-import os
-import matplotlib.pyplot as plt
-
 # Attempt to import groq with error handling
 try:
     from groq import Groq
     groq_available = True
 except ImportError:
     groq_available = False
-    st.warning("groq library is not available. Some features may be limited.")
+    st.warning("Groq library is not available. Some features may be limited.")
 
-# Conditional check for groq usage
-if groq_available:
-    st.write("Using Groq capabilities...")
-    # Add code that uses `Groq` here
-else:
-    st.write("Groq features are disabled.")
 # Attempt to import google-generativeai with error handling
 try:
     import google.generativeai as genai
     genai_available = True
 except ImportError:
     genai_available = False
+    st.warning("Google Generative AI library is not available. Some features may be limited.")
 
+# Displaying NutriGuide title
 st.title("NutriGuide")
 st.write("This app analyzes nutritional information.")
 
-# Check if genai is available before using it
-if genai_available:
-    st.write("Using Google Generative AI capabilities...")
-    # Add code that uses `genai` here
-else:
-    st.write("Google Generative AI features are disabled.")
+# Configure API keys if libraries are available
+if groq_available:
+    client = Groq(api_key="gsk_I1BNr83qfIcdJXTyWPMDWGdyb3FYZWkOawdejBDwLwPzMlynGy")
 
-# Rest of your app code without references to `genai` outside this block
+if genai_available:
+    genai.configure(api_key="AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw")
+
+# Check and create a directory for temporary files
+if not os.path.exists("temp"):
+    os.makedirs("temp")
+
+# Rest of your application logic here
+
 
 API_KEY_GROQ = "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"
 API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
