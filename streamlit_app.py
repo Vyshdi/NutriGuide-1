@@ -27,7 +27,7 @@ st.write("This app analyzes nutritional information.")
 if groq_available:
     client = Groq(api_key="gsk_I1BNr83qfIcdJXTyWPMDWGdyb3FYZWkOawdejBDwLwPzMlynGy")
 
-if genai_available:
+if genai_available:  # Make sure genai is available before configuring it
     genai.configure(api_key="AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw")
 
 # Check and create a directory for temporary files
