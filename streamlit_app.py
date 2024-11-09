@@ -2,8 +2,26 @@ import streamlit as st
 import datetime
 import os
 import matplotlib.pyplot as plt
-from groq import Groq  # Ensure 'groq' is available in your environment
 
+import streamlit as st
+import datetime
+import os
+import matplotlib.pyplot as plt
+
+# Attempt to import groq with error handling
+try:
+    from groq import Groq
+    groq_available = True
+except ImportError:
+    groq_available = False
+    st.warning("groq library is not available. Some features may be limited.")
+
+# Conditional check for groq usage
+if groq_available:
+    st.write("Using Groq capabilities...")
+    # Add code that uses `Groq` here
+else:
+    st.write("Groq features are disabled.")
 # Attempt to import google-generativeai with error handling
 try:
     import google.generativeai as genai
