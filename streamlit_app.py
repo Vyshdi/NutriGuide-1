@@ -2,6 +2,7 @@ import streamlit as st
 import datetime
 import os
 import matplotlib.pyplot as plt
+import google.generativeai as genai
 from groq import Groq  # Ensure 'groq' is available in your environment
 
 # Attempt to import google-generativeai with error handling
