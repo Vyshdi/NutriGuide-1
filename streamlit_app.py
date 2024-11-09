@@ -12,6 +12,10 @@ except ImportError:
     genai_available = False
     st.warning("google-generativeai library is not available. Some features may be limited.")
 
+if genai_available:
+    st.write("Using Google Generative AI capabilities...")
+else:
+    st.write("Google Generative AI features are disabled.")
 API_KEY_GROQ = "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"
 API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
 
