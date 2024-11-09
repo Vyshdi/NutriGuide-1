@@ -10,12 +10,19 @@ try:
     genai_available = True
 except ImportError:
     genai_available = False
-    st.warning("google-generativeai library is not available. Some features may be limited.")
 
+st.title("NutriGuide")
+st.write("This app analyzes nutritional information.")
+
+# Check if genai is available before using it
 if genai_available:
     st.write("Using Google Generative AI capabilities...")
+    # Add code that uses `genai` here
 else:
     st.write("Google Generative AI features are disabled.")
+
+# Rest of your app code without references to `genai` outside this block
+
 API_KEY_GROQ = "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"
 API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
 
