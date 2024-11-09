@@ -34,8 +34,6 @@ if genai_available:
 if not os.path.exists("temp"):
     os.makedirs("temp")
 
-# Rest of your application logic here
-
 
 API_KEY_GROQ = "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"
 API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
