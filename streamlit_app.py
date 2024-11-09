@@ -2,8 +2,15 @@ import streamlit as st
 import datetime
 import os
 import matplotlib.pyplot as plt
-from groq import Groq
-import google.generativeai as genai
+from groq import Groq  # Ensure 'groq' is available in your environment
+
+# Attempt to import google-generativeai with error handling
+try:
+    import google.generativeai as genai
+    genai_available = True
+except ImportError:
+    genai_available = False
+    st.warning("google-generativeai library is not available. Some features may be limited.")
 
 API_KEY_GROQ = "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"
 API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
