@@ -3,7 +3,7 @@ import datetime
 import os
 import matplotlib.pyplot as plt
 
-# Attempt to import groq with error handling
+# Import AI libraries with error handling
 try:
     from groq import Groq
     groq_available = True
@@ -11,17 +11,12 @@ except ImportError:
     groq_available = False
     st.warning("Groq library is not available. Some features may be limited.")
 
-# Attempt to import google-generativeai with error handling
 try:
     import google.generativeai as genai
     genai_available = True
 except ImportError:
     genai_available = False
     st.warning("Google Generative AI library is not available. Some features may be limited.")
-
-# Displaying NutriGuide title
-st.title("NutriGuide")
-st.write("This app analyzes nutritional information.")
 
 # Configure API keys only if respective libraries are available
 if groq_available:
