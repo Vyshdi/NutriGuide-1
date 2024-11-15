@@ -149,7 +149,7 @@ elif app_mode == "Food Allergen Checker":
     image_file = st.file_uploader("Upload an image of the food dish (optional):", type=["jpg", "jpeg", "png"])
 
     if st.button("Check Allergens"):
-        temp_image_path = None  # Initialize variable for temporary image path
+        temp_image_path = None 
         if food_item or image_file:
             prompt = ""
             if allergen:
@@ -169,7 +169,7 @@ elif app_mode == "Food Allergen Checker":
                         f.write(image_file.getbuffer())
                     prompt += f"\nThis is the food '{temp_image_path}' I am going to eat. What ingredients might cause allergic reactions? Please provide a summary."
 
-            # Execute AI model
+            
             if prompt:
                 model = genai.GenerativeModel("gemini-1.5-flash")
                 try:
@@ -253,7 +253,7 @@ elif app_mode == "Diet Recommendation for Chronic Conditions":
 # Feature 5: Personalized Diet and Fitness Syncing
 elif app_mode == "Personalized Diet and Fitness Syncing":
     st.markdown('<div class="feature-bg"><h2>Personalized Diet and Fitness Syncing</h2></div>', unsafe_allow_html=True)
-    # User Inputs
+    
     age = st.number_input("Age", min_value=1, max_value=100, value=30)
     gender = st.selectbox("Gender", ["Male", "Female", "Other"])
     weight = st.number_input("Weight (kg)", min_value=20, max_value=200, value=70)
@@ -265,16 +265,13 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
     goal = st.selectbox("Diet Goal", ["Weight Loss", "Weight Gain", "Maintenance"])
     activity_level = st.selectbox("Activity Level", ["Sedentary", "Lightly Active", "Moderately Active", "Very Active"])
     
-    # New Nutritional Inputs
     protein_goal = st.number_input("Daily Protein Goal (g)", min_value=10, max_value=300, value=100)
     carb_goal = st.number_input("Daily Carbohydrate Goal (g)", min_value=20, max_value=500, value=250)
     fat_goal = st.number_input("Daily Fat Goal (g)", min_value=10, max_value=200, value=70)
     
-    # Dietary Preferences & Restrictions
     dietary_preferences = st.selectbox("Dietary Preferences", ["No Preference", "Vegetarian", "Vegan", "Low-Carb", "High-Protein"])
     dietary_restrictions = st.multiselect("Dietary Restrictions", ["Gluten-Free", "Dairy-Free", "Nut-Free", "Shellfish-Free"])
-    
-    # Time Frame
+
     time_frame_type = st.selectbox("Select Time Frame Type", ["Days", "Weeks", "Months"])
     if time_frame_type == "Days":
         time_frame = st.number_input("Time Frame (in days)", min_value=1, max_value=365, value=7)
@@ -285,16 +282,12 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
 
     calorie_goal = st.number_input("Daily Calorie Goal (kcal)", min_value=1000, max_value=5000, value=1800)
     
-    # Recent workout data
     recent_workout_data = st.text_area("Enter recent workout data (e.g., duration, type, intensity):", "")
     
-    # Hydration Goal
     hydration_goal = st.slider("Daily Hydration Goal (L)", min_value=1.0, max_value=5.0, value=2.5)
     
-    # Tracking Period input
-    tracking_period = st.selectbox("Choose Tracking Period", ["Daily", "Weekly"])  # Ensure this is defined before being used in prompt
+    tracking_period = st.selectbox("Choose Tracking Period", ["Daily", "Weekly"])  
     
-    # Motivation Tips
     st.sidebar.header("Daily Motivational Tip")
     motivational_tips = [
         "Stay consistent! Small progress adds up.",
@@ -339,7 +332,6 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
         """
         with st.spinner("Generating your personalized diet and fitness plan..."):
             try:
-                # Use Groq client to generate the plan
                 messages = [{"role": "user", "content": prompt}]
                 completion = client.chat.completions.create(
                     model="llama-3.2-90b-text-preview",
@@ -353,7 +345,6 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
             except Exception as e:
                 st.error(f"An error occurred: {e}")
     
-    # Visualize Calorie Intake (Weekly)
     if tracking_period == "Weekly":
         st.header("Progress Overview")
         days = [f"Day {i}" for i in range(1, time_frame + 1)]
