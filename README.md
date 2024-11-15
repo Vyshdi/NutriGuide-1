@@ -17,3 +17,8 @@ KEY FEATURES
 5.  Fitness and Diet Syncing: Enables users to integrate and synchronize workout data, allowing for tailored dietary recommendations based on recent physical activity.
 6. Interactive Dietary Tracking: Daily and weekly diet tracking options provide insights into calorie intake, nutrient balance, and progress toward goals.
 7.  Chronic Condition Support: Specific recommendations for individuals with conditions like diabetes, hypertension, and cardiovascular diseases to ensure safe and effective dietary guidance.
+
+Authors- 
+Vyshali
+Akanksha Sharma
+Satyam Gupta
