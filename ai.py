@@ -12,7 +12,7 @@ API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
 client = Groq(api_key=API_KEY_GROQ)
 genai.configure(api_key=API_KEY_GENAI)
 
-st.set_page_config(page_title="NutriGuide.AI", page_icon="🍎", layout="wide"
+st.set_page_config(page_title="NutriGuide.AI", page_icon="🍎", layout="wide")
 
 app_mode = st.sidebar.selectbox(
     "Choose a feature", 
