@@ -12,10 +12,8 @@ API_KEY_GENAI = "AIzaSyC4f-d-Igv6UWdHKoMgZcNfRTeQBFVgtUw"
 client = Groq(api_key=API_KEY_GROQ)
 genai.configure(api_key=API_KEY_GENAI)
 
-# Set up the page configuration
-st.set_page_config(page_title="NutriGuide.AI", page_icon="🍎", layout="wide")
+st.set_page_config(page_title="NutriGuide.AI", page_icon="🍎", layout="wide"
 
-# Sidebar navigation
 app_mode = st.sidebar.selectbox(
     "Choose a feature", 
     [
@@ -27,7 +25,7 @@ app_mode = st.sidebar.selectbox(
         "Personalized Diet and Fitness Syncing"
     ]
 )
-# Function to load custom CSS without animations and centered text
+
 def load_dynamic_css():
     st.markdown(
         """
@@ -138,18 +136,13 @@ def load_dynamic_css():
         """,
         unsafe_allow_html=True
     )
-
-# Load dynamic CSS for a centered welcome message and no animation
 load_dynamic_css()
 
-# Home Page
 if app_mode == "Home":
     st.markdown('<div class="main-bg">', unsafe_allow_html=True)
 
-    # Welcome Title centered
     st.markdown('<h1>Welcome to NutriGuide.AI</h1>', unsafe_allow_html=True)
 
-    # Content without animation
     st.markdown(
         """
         <div class="feature-bg">
@@ -277,7 +270,6 @@ if app_mode == "Food Nutrient and Calorie Estimator":
         Additionally, you'll receive a meal balance assessment.
     """)
 
-    # Image file uploader
     image_file = st.file_uploader("Upload an image of food:", type=["jpg", "jpeg", "png"])
 
     if image_file:
@@ -286,22 +278,18 @@ if app_mode == "Food Nutrient and Calorie Estimator":
         if not os.path.exists(temp_dir):
             os.makedirs(temp_dir)
 
-        # Save the uploaded image temporarily
         temp_image_path = os.path.join(temp_dir, image_file.name)
         with open(temp_image_path, "wb") as f:
             f.write(image_file.getbuffer())
 
-        # Display the uploaded image
         st.image(image_file, caption="Uploaded Image", use_column_width=True)
 
-        # Button to analyze nutrients
         if st.button("Analyze Nutrients"):
             try:
-                # Upload the file to the generative AI model
+                
                 myfile = genai.upload_file(temp_image_path)
                 model = genai.GenerativeModel("gemini-1.5-flash")
 
-                # Generate nutrient analysis
                 result = model.generate_content(
                     [
                         myfile,
@@ -319,11 +307,9 @@ if app_mode == "Food Nutrient and Calorie Estimator":
                     ]
                 )
 
-                # Display nutrient analysis
                 st.success("Nutrient analysis completed!")
                 st.write(result.text)
 
-                # Generate meal balance assessment
                 balance_result = model.generate_content(
                     [
                         result.text,
@@ -339,7 +325,6 @@ if app_mode == "Food Nutrient and Calorie Estimator":
                     ]
                 )
 
-                # Display meal balance assessment
                 st.markdown("<div style='background-color: #f0f0f0; padding: 10px; border-radius: 5px;'>"
                             "<strong>Meal Balance Assessment:</strong><br>"
                             f"{balance_result.text}"
@@ -348,7 +333,6 @@ if app_mode == "Food Nutrient and Calorie Estimator":
             except Exception as e:
                 st.error(f"An error occurred: {e}")
 
-        # Clean up the temporary image file
         if os.path.exists(temp_image_path):
             os.remove(temp_image_path)
 
@@ -477,16 +461,13 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
     goal = st.selectbox("Diet Goal", ["Weight Loss", "Weight Gain", "Maintenance"])
     activity_level = st.selectbox("Activity Level", ["Sedentary", "Lightly Active", "Moderately Active", "Very Active"])
     
-    # New Nutritional Inputs
     protein_goal = st.number_input("Daily Protein Goal (g)", min_value=10, max_value=300, value=100)
     carb_goal = st.number_input("Daily Carbohydrate Goal (g)", min_value=20, max_value=500, value=250)
     fat_goal = st.number_input("Daily Fat Goal (g)", min_value=10, max_value=200, value=70)
     
-    # Dietary Preferences & Restrictions
     dietary_preferences = st.selectbox("Dietary Preferences", ["No Preference", "Vegetarian", "Vegan", "Low-Carb", "High-Protein"])
     dietary_restrictions = st.multiselect("Dietary Restrictions", ["Gluten-Free", "Dairy-Free", "Nut-Free", "Shellfish-Free"])
-    
-    # Time Frame
+  
     time_frame_type = st.selectbox("Select Time Frame Type", ["Days", "Weeks", "Months"])
     if time_frame_type == "Days":
         time_frame = st.number_input("Time Frame (in days)", min_value=1, max_value=365, value=7)
@@ -497,16 +478,12 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
 
     calorie_goal = st.number_input("Daily Calorie Goal (kcal)", min_value=1000, max_value=5000, value=1800)
     
-    # Recent workout data
     recent_workout_data = st.text_area("Enter recent workout data (e.g., duration, type, intensity):", "")
-    
-    # Hydration Goal
+   
     hydration_goal = st.slider("Daily Hydration Goal (L)", min_value=1.0, max_value=5.0, value=2.5)
-    
-    # Tracking Period input
+   
     tracking_period = st.selectbox("Choose Tracking Period", ["Daily", "Weekly"])  # Ensure this is defined before being used in prompt
     
-    # Motivation Tips
     st.sidebar.header("Daily Motivational Tip")
     motivational_tips = [
         "Stay consistent! Small progress adds up.",
@@ -565,7 +542,6 @@ elif app_mode == "Personalized Diet and Fitness Syncing":
             except Exception as e:
                 st.error(f"An error occurred: {e}")
     
-    # Visualize Calorie Intake (Weekly)
     if tracking_period == "Weekly":
         st.header("Progress Overview")
         days = [f"Day {i}" for i in range(1, time_frame + 1)]
