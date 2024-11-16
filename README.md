@@ -19,6 +19,6 @@ KEY FEATURES
 7.  Chronic Condition Support: Specific recommendations for individuals with conditions like diabetes, hypertension, and cardiovascular diseases to ensure safe and effective dietary guidance.
 
 Authors- 
-Vyshali
-Akanksha Sharma
+Vyshali,
+Akanksha Sharma,
 Satyam Gupta
